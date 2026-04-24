@@ -9,7 +9,7 @@ const app = fastify({ logger: true });
 
 await app.register(cors, {
   origin: [
-    "https://todo-first-backend.vercel.app/",
+    "https://todo-first-backend.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173"
   ],
