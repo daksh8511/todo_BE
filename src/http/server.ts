@@ -9,7 +9,7 @@ const app = fastify({ logger: true });
 
 await app.register(cors, {
   origin: "http://localhost:5173",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 });
 
 app.register(TodoList, { prefix: "/api" });
