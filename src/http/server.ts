@@ -4,19 +4,25 @@ import { db } from "../database/client.ts";
 import { sql } from "drizzle-orm";
 import TodoList from "../domain/TodoList.ts";
 
-const app = fastify({ logger: false });
+const app = fastify({ logger: true });
 
-app.register(TodoList, {prefix : '/api'})
+app.register(TodoList, { prefix: "/api" });
 
-app.listen({ host: "0.0.0.0", port: 3004 }, async (err, address) => {
+const start = async () => {
   try {
     await db.execute(sql`select 1`);
     console.log("Database connected successfully");
-    console.log("server start successfully", address);
+    const port = Number(process.env.PORT) || 3000;
+    await app.listen({
+      host: "0.0.0.0",
+      port,
+    });
+
+    console.log(`Server started on port ${port}`);
   } catch (error) {
-    if (error) {
-      console.error("Error : ", err);
-      process.exit(1);
-    }
+    console.error("Startup error:", error);
+    process.exit(1);
   }
-});
+};
+
+start();
