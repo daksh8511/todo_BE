@@ -4,8 +4,8 @@ import "dotenv/config";
 export default {
   schema: "./src/database/schema.ts",
   out: "./drizzle",
-  dialect: "postgresql", // ✅ REQUIRED
+  dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL!, // ✅ correct key
+    url: process.env.DATABASE_URL!,
   },
 } satisfies Config;
