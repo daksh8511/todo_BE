@@ -3,8 +3,14 @@ import fastify from "fastify";
 import { db } from "../database/client.ts";
 import { sql } from "drizzle-orm";
 import TodoList from "../domain/TodoList.ts";
+import cors from '@fastify/cors'
 
 const app = fastify({ logger: true });
+
+await app.register(cors, {
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+});
 
 app.register(TodoList, { prefix: "/api" });
 
