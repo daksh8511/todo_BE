@@ -8,7 +8,11 @@ import cors from '@fastify/cors'
 const app = fastify({ logger: true });
 
 await app.register(cors, {
-  origin: "http://localhost:5173",
+  origin: [
+    "https://todo-blush-mu.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 });
 
